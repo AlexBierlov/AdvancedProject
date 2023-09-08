@@ -41,9 +41,9 @@
                     </svg>
                   </div>
                   <ul class="dropdown-menu" data-attr="about">
-                    <li><a href="/about.php">Наша команда</a></li>
-                    <li><a href="#">Партнери</a></li>
-                    <li><a href="#">Договір</a></li>
+                    <li><a href="/team.php">Наша команда</a></li>
+                    <li><a href="/partners-link.php">Партнери</a></li>
+                    <li><a href="/contracts-link.php">Договір</a></li>
                   </ul>
                 </li>
                 <li><a href="/catalog.php">Каталог продукції </a></li>
