@@ -149,10 +149,10 @@ setCompareCartCount()
 
 // Удаляем background для всех вкладок, кроме главной страницы
 
-function deleteBg(){
+function deleteBg() {
   const href = window.location.pathname;
   let banner = document.getElementsByClassName('banner')[0];
-  if(href !== '/'){
+  if (href !== '/') {
     banner.classList.add('noBg');
   } else {
     banner.classList.remove('noBg');
@@ -160,3 +160,46 @@ function deleteBg(){
 }
 
 deleteBg();
+
+// Регистрация
+
+const regBtn = document.getElementById('regBtn');
+const regCheckbox = document.getElementById('regCheckbox');
+let users = [];
+
+regBtn.addEventListener('click', async function (event) {
+  event.preventDefault();
+  if (regCheckbox.checked) {
+    let user = new Object();
+    user.name = document.getElementById('name').value;
+    user.surname = document.getElementById('surname').value;
+    user.phone = document.getElementById('phone').value;
+    user.mail = document.getElementById('mail').value;
+    user.password = document.getElementById('password').value;
+    users.push(user);
+    console.log(user);
+    console.log(users);
+
+    
+    const res = await axios.post(
+      '/api/registration',
+      {
+        email: user.mail,
+        password: user.password,
+      },
+      {
+        baseURL: 'https://jwt-form-server.herokuapp.com',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Access-Control-Allow-Origin': 'http://example.com/',
+          SameSite: 'None',
+          Secure: true,
+        },
+      }
+    );  
+  } else {
+    console.log('поставьте галочку')
+  }  
+})
+
