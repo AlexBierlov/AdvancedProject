@@ -9,6 +9,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   margin: 15px;
 }
 .reg__suptitle a{
    color: rgba(0, 0, 0, 0.5);
@@ -81,6 +82,30 @@ input{
    border-radius: 50%;
    background-color: rgba(132, 197, 81, 1);
    margin: 0 10px;
+}
+.error{
+   display: none;
+   color: red;
+   margin: 30px;
+}
+.error.show{
+   display: block;
+}
+#noCheck{
+   display: none;
+   color: red;
+   margin: 10px;
+}
+#noCheck.show{
+   display: block;
+}
+#errPass{
+   display: none;
+   color: red;
+   margin: 10px;
+}
+#errPass.show{
+   display: block;
 }
 
 @media (max-width: 767px){

@@ -58,7 +58,7 @@
                 <img src="images/logOut.svg" alt="Вихід з акаунту" />
               </div>
               <div class="login flex-aic">
-                <a href="#">Вхід</a>
+                <a href="/cabinet.php">Вхід</a>
                 <a href="/register.php">Реєстрація</a>
               </div>
             </div>

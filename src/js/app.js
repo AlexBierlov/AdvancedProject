@@ -163,25 +163,26 @@ deleteBg();
 
 // Регистрация
 
-const regBtn = document.getElementById('regBtn');
+let errorReg = document.getElementById('regError');
 const regCheckbox = document.getElementById('regCheckbox');
 let users = [];
 
-regBtn.addEventListener('click', async function (event) {
+async function regBtnOn (event) {
   event.preventDefault();
   if (regCheckbox.checked) {
+    noCheck.classList.remove('show');
     let user = new Object();
     user.name = document.getElementById('name').value;
     user.surname = document.getElementById('surname').value;
     user.phone = document.getElementById('phone').value;
     user.mail = document.getElementById('mail').value;
     user.password = document.getElementById('password').value;
+    user.repeadPassword = document.getElementById('repeatPassword').value;
     users.push(user);
-    console.log(user);
-    console.log(users);
 
+    if(user.password === user.repeadPassword){
     
-    const res = await axios.post(
+      const res = await axios.post(
       '/api/registration',
       {
         email: user.mail,
@@ -192,14 +193,32 @@ regBtn.addEventListener('click', async function (event) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': 'http://example.com/',
+          'Access-Control-Allow-Origin': 'http://127.0.0.1/:80',
           SameSite: 'None',
           Secure: true,
         },
       }
-    );  
+      );  
+      if(res.status === 200){
+      localStorage.setItem('token', res.data.refreshToken);
+      localStorage.setItem('user', res.data.user.login);
+      window.location.href = "/cabinet.php";
+            
+      } else {
+      setTimeout(() => {        
+        errorReg.textContent = `Помилка: ${res.data}`;
+        errorReg.classList.add('show');
+      }, 5000);      
+      }
+    } else {
+      document.getElementById('errPass').classList.add('show');
+      document.getElementById('password').addEventListener('click', ()=>{
+        document.getElementById('errPass').classList.remove('show');
+      })
+    }
   } else {
-    console.log('поставьте галочку')
+    const noCheck = document.getElementById('noCheck');
+    noCheck.classList.add('show');    
   }  
-})
+}
 

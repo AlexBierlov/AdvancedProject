@@ -20,7 +20,8 @@
                </div>
                
             </div>
-            <form id="regForm" action="" class="reg__form">
+            <div id="regError" class="error"></div>
+            <form onsubmit="regBtnOn(event)" method="POST" id="regForm" class="reg__form">
                <div class="reg__form-block">
                   <input placeholder="Ім'я" class="f50" type="text" name="name" id="name" required>
                   <input placeholder="Прізвище" class="f50" type="text" name="surname" id="surname" required>
@@ -33,11 +34,12 @@
                </div>
                
                   <input placeholder="Пароль" class="f100" type="password" name="password" id="password" required>
+                  <div id="errPass">Введіть вірний пароль</div>
                   <input placeholder="Підтвердити пароль" class="f100" type="password" name="repeatPassword" id="repeatPassword" required>
-               
+                  <div id="noCheck">Підтвердіть згоду на обробку персональних даних</div>
                <div class="checkbox">
-                  <input type="checkbox" name="" id="regCheckbox">
-                  <label for="regCheckbox">я згоден на обробку і захист <a href="#">персональних даних</a></label>
+                  <input type="checkbox" name="" id="regCheckbox">                  
+                  <label for="regCheckbox">я згоден на обробку і захист <a href="#">персональних даних</a></label>                  
                </div>
                
                <input id="regBtn" class="reg__btn" type="submit"  value="Зареєструватися">
