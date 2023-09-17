@@ -222,3 +222,84 @@ async function regBtnOn (event) {
   }  
 }
 
+// News - Slider
+
+const cardWrap = document.querySelector('.card-wrap');
+
+
+let images = [
+  '../images/products/1.png',
+  '../images/products/2.png',
+  '../images/products/3.png',
+  '../images/products/4.png',
+  '../images/products/5.jfif',
+  '../images/products/6.jfif',
+  '../images/products/7.jfif',
+  '../images/products/8.jfif',
+];
+
+
+  images.forEach((el, i)=>{
+    const item = document.createElement('div');
+    item.classList.add('item');
+    cardWrap.appendChild(item);
+    const imageItem = document.createElement('img');
+    imageItem.setAttribute('src', el);
+    imageItem.setAttribute('alt', `photo-${i + 1}`);
+    item.appendChild(imageItem);
+    const itemDesc = document.createElement('div');
+    itemDesc.classList.add('item__describe');
+    item.appendChild(itemDesc);
+    const descTitle = document.createElement('div');
+    descTitle.classList.add('describe__title');
+    descTitle.textContent = 'Петунія Софістика F1';
+    itemDesc.appendChild(descTitle);
+    const descSub = document.createElement('div');
+    descSub.classList.add('describe__subtitle');
+    descSub.textContent = 'В наявності';
+    itemDesc.appendChild(descSub);
+    const descFoot = document.createElement('div');
+    descFoot.classList.add('describe__foot');
+    itemDesc.appendChild(descFoot);
+    const descPrice = document.createElement('div');
+    descPrice.classList.add('describe__price');
+    descFoot.appendChild(descPrice);
+    const descFoodImg = document.createElement('img');
+    descFoodImg.src = '../images/products/but.svg';
+    descFoot.appendChild(descFoodImg);
+    const itemPrice = document.createElement('div');
+    itemPrice.classList.add('item__price');
+    itemPrice.textContent = '20 грн';
+    descPrice.appendChild(itemPrice);
+    const itemCol = document.createElement('div');
+    itemCol.classList.add('item__col');
+    itemCol.textContent = '1 шт';
+    descPrice.appendChild(itemCol);
+  })
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const items = document.querySelectorAll('.card-wrap .item');
+  let currentIndex = 0;
+
+
+
+function showSlide(index) {
+  items.forEach((item, i) => {
+      item.style.transform = `translateX(-${index * 100}%)`;
+  });
+}
+
+prevBtn.addEventListener("click", function () {
+  if (currentIndex > 0) {
+      currentIndex--;
+      showSlide(currentIndex);      
+  }
+});
+
+nextBtn.addEventListener("click", function () {
+  if (currentIndex < items.length - 1) {
+      currentIndex++;
+      showSlide(currentIndex);      
+  }
+});
